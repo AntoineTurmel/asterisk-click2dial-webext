@@ -1,0 +1,36 @@
+{
+
+    "manifest_version": 2,
+    "name": "Asterisk Click2Dial",
+    "version": "0.2",
+  
+    "description": "This is an easy to use extention, select any number on a web page, right click to open the context menu which you can use to call this number.",
+    "default_locale": "en",
+    "author": "Antoine Turmel",
+  
+    "icons": {
+      "48": "icons/asterisk-48.png"
+    },
+
+    "permissions": [
+        "storage",
+        "menus",
+        "<all_urls>",
+        "activeTab",
+        "tabs"
+      ],
+  
+      "options_ui": {
+        "page" : "options.html"
+      },
+
+      "background": {
+        "scripts": ["asterisk.js"]
+      },
+
+      "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["content-script.js"]
+      }]
+  
+  }
