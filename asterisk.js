@@ -49,8 +49,19 @@ function createMenuItem(number){
   browser.menus.create({
     id: "callnumber",
     type: "normal",
-    title: "Call " + number,
-    contexts: ["selection"],
+    title: "Call: " + number,
+    contexts: ["selection","editable"],
+    checked: true,
+    icons: {
+      "20": "icons/asterisk-20.png",
+      "32": "icons/asterisk-32.png"
+    }
+  }, onCreated);
+  browser.menus.create({
+    id: "editcallnumber",
+    type: "normal",
+    title: "Edit and call: " + number,
+    contexts: ["selection","editable"],
     checked: true,
     icons: {
       "20": "icons/asterisk-20.png",
@@ -64,6 +75,7 @@ function handleMessage(request, sender, sendResponse) {
   selectedNumber = request.selectedNumber;
   //sendResponse({response: "Response from background script"});
   browser.menus.remove("callnumber");
+  browser.menus.remove("editcallnumber");
   createMenuItem(request.selectedNumber);
 }
 
@@ -99,6 +111,9 @@ browser.menus.onClicked.addListener((info, tab) => {
               console.log(xhr.responseText);
           }
       };
+      break;
+    case "editcallnumber":
+    var person = prompt("Please enter your number", "123");
       break;
   }
 });

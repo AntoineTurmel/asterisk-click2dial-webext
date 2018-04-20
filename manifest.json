@@ -2,10 +2,9 @@
 
     "manifest_version": 2,
     "name": "Asterisk Click2Dial",
-    "version": "0.2",
+    "version": "0.3",
   
     "description": "This is an easy to use extention, select any number on a web page, right click to open the context menu which you can use to call this number.",
-    "default_locale": "en",
     "author": "Antoine Turmel",
   
     "icons": {
