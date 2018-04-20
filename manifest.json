@@ -18,18 +18,27 @@
         "activeTab",
         "tabs"
       ],
-  
-      "options_ui": {
-        "page" : "options.html"
-      },
 
-      "background": {
-        "scripts": ["asterisk.js"]
+    "browser_action": {
+      "default_icon": {
+        "20": "icons/asterisk-20.png",
+        "32": "icons/asterisk-32.png"
       },
+      "default_title": "Asterisk Click2Dial",
+      "default_popup": "popup/popupAsterisk.html"
+    },
 
-      "content_scripts": [{
-        "matches": ["<all_urls>"],
-        "js": ["content-script.js"]
-      }]
+    "options_ui": {
+      "page" : "options.html"
+    },
+
+    "background": {
+      "scripts": ["asterisk.js"]
+    },
+
+    "content_scripts": [{
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"]
+    }]
   
-  }
+}
