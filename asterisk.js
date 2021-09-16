@@ -107,14 +107,13 @@ browser.browserAction.onClicked.addListener((handleClick) => {
 function placingCall(selectedNumber) {
   let xhr_login = new XMLHttpRequest();
   let xhr = new XMLHttpRequest();
-  xhr_login.open("GET", "http://" + asteriskServer + ":" + asteriskPort + "/rawman?action=Login&Username=" + asteriskUsername + "&Secret=" + asteriskPassword);
+  xhr_login.open("GET", "http://" + asteriskServer + ":" + asteriskPort + "/mxml?action=Login&Username=" + asteriskUsername + "&Secret=" + asteriskPassword);
   xhr_login.send("");
   xhr_login.onreadystatechange = function() {
       if (xhr_login.readyState == 4 && (xhr_login.status == 200 || xhr_login.status == 0)) {
           console.log(xhr_login.responseText);
-          var response = xhr_login.responseText;
-          console.log(xhr_login.responseText);
-	  var success = xhr_login.responseText.split("\r\n")[0].split(": ")[1];
+          var response = xhr_login.responseXML;
+          var success = response.getElementsByTagName("generic")[0].getAttribute('response')
           //console.log(success);
           if (success == "Success") {
             xhr.open("GET", "http://" + asteriskServer + ":" + asteriskPort + "/mxml?action=originate&channel=" + asteriskProtocol + "/" + asteriskChannel + "&exten=" + selectedNumber + "&context=" + asteriskContext + "&CallerId=" + asteriskChannel + "&priority=1&codecs=alaw&timeout=5000");
